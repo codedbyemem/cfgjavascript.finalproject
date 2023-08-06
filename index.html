@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,800&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="page-title">
+      <h1>Exercise Tracker</h1>
+    </div>
+    <form action="" id="tracker">
+      <label for="date-select">
+        <h3 id="date-label">Date</h3></label>
+      <input
+        type="date"
+        class="form-field"
+        id="date-select"
+        name="date"
+        required
+      />
+      <label for="exercise-select"> Choose an excercise </label>
+      <select name="exercise" class="form-field" id="exercise-select" required>
+        <option value="">--Please choose from the list--</option>
+        <option value="deadlift">Deadlift</option>
+        <option value="squats">Squats</option>
+        <option value="bench">Bench Press</option>
+        <option value="running">Running</option>
+        <option value="jogging">Jogging</option>
+        <option value="walking">Walking</option>
+        <option value="hiit">High Intensity Interval Training</option>
+        <option value="yoga">Yoga</option>
+        <option value="pilates">Pilates</option>
+      </select>
+      <div class="duration">
+        <label for="duration-h"><span>Duration</span> Hours</label>
+        <input
+          type="number"
+          class="form-field"
+          id="duration-h"
+          name="duration-h"
+          required
+          min="0"
+          max="23"
+          placeholder="H"
+        />
+        <label for="duration-m">Minutes</label>
+        <input
+          type="number"
+          class="form-field"
+          id="duration-m"
+          name="duration-m"
+          required
+          min="0"
+          max="59"
+          placeholder="M"
+        />
+      </div>
+     <div id="notes-container"
+      <label for="notes">
+        <h3 id="note-label">Notes</h3></label>
+      <input
+        type="text"
+        class="form-field"
+        id="notes"
+        name="notes"
+        placeholder="Record your set/rep count and weights used"
+      /></div>
+      <button type="submit" id="submit-btn">Submit</button>
+    </form>
+    <div id="output"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
