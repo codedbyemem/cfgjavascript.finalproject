@@ -1,3 +1,8 @@
+// 1 – wrap each text in a span
+// 2 – give these spans IDs like entry-0, entry-1, entry-2, ...
+// 3 – in the save button handler, find the closest span element
+// 4 – change the contents of this span element
+
 //save whole form as variable
 const tracker = document.getElementById("tracker");
 
@@ -9,7 +14,11 @@ function displayInputContents(event) {
   const dateInput = document.getElementById("date-select").value;
 
   //obtain exercise type from form
-  const exerciseInput = getOptionText();
+  const exerciseInputText = getExerciseInputText();
+
+  // obtain value of exercise selected option from exercise dropdown list
+
+  const exerciseInputValue = document.getElementById("exercise-select").value;
 
   //display all inputs in empty html section
   const displayAll = document.getElementById("output");
@@ -24,16 +33,16 @@ function displayInputContents(event) {
   let formatDate = `${day} - ${month} - ${year}`;
 
   //getting exercise duration input fields saved as variables
-  const durationInputH = document.getElementById("duration-h");
-  const durationInputM = document.getElementById("duration-m");
+  const durationInputH = document.getElementById("duration-h").value;
+  const durationInputM = document.getElementById("duration-m").value;
 
-  //accessing the values of the duration inputs
-  inputValueH = durationInputH.value;
-  inputValueM = durationInputM.value;
+  // //accessing the values of the duration inputs
+  // inputValueH = durationInputH.value;
+  // inputValueM = durationInputM.value;
 
   //get notes box value
-  const notes = document.getElementById("notes");
-  notesValue = notes.value;
+  const notes = document.getElementById("notes").value;
+  // notesValue = notes.value;
 
   //creating delete button via dom
 
@@ -52,7 +61,7 @@ function displayInputContents(event) {
 
   //creating a new line of the html page displaying the inputs
   const newLine = document.createTextNode(
-    `${formatDate} ${exerciseInput} ${inputValueH} H ${inputValueM} M ${notesValue}`
+    `${formatDate} ${exerciseInputText} ${durationInputH} H ${durationInputM} M ${notes}`
   );
 
   //adding the new line of text and the button in the DOM div
@@ -83,18 +92,38 @@ function displayInputContents(event) {
   deleteBtn.addEventListener("click", deleteFunction);
 
   function editInput() {
-    editBtn.textContent = "Save";
-    document.getElementById("date-select").value = dateInput;
-    document.getElementById("exercise-select").getOptionText() = exerciseInput;
-    document.getElementById("duration-h").value = inputValueH;
-    document.getElementById("duration-m").value = inputValueM;
-    document.getElementById("notes").value = notesValue;
+    if (editBtn.textContent === "Save") {
+      const newDate = document.getElementById("date-select").value;
+      const newDurationH = document.getElementById("duration-h").value;
+      const newDurationM = document.getElementById("duration-m").value;
+      const newNotes = document.getElementById("notes").value;
+      const newExerciseInput = document.getElementById("exercise-select").value;
+      updatedLine = `${newDate} ${newExerciseInput} ${newDurationH} H ${newDurationM} M ${newNotes}`;
+      console.log(updatedLine);
+      editBtn.textContent = "Saved";
+      function savedToEditButton() {
+        editBtn.textContent = "Edit";
+      }
+      setTimeout(savedToEditButton, 1000);
+      document.getElementById("date-select").value = "";
+      document.getElementById("duration-h").value = "";
+      document.getElementById("duration-m").value = "";
+      document.getElementById("notes").value = "";
+      document.getElementById("exercise-select").value = "";
+    } else {
+      editBtn.textContent = "Save";
+      document.getElementById("date-select").value = dateInput;
+      document.getElementById("duration-h").value = durationInputH;
+      document.getElementById("duration-m").value = durationInputM;
+      document.getElementById("notes").value = notes;
+      document.getElementById("exercise-select").value = exerciseInputValue;
+    }
   }
   editBtn.addEventListener("click", editInput);
 }
 
 //get text of option rather than value name
-function getOptionText() {
+function getExerciseInputText() {
   const optionList = document.getElementById("exercise-select");
   const selectedOption =
     optionList.options[optionList.selectedIndex].textContent;
