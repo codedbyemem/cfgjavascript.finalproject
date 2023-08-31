@@ -37,7 +37,6 @@ function displayInputContents(event) {
 
   //get notes box value
   const notes = document.getElementById("notes").value;
-  // notesValue = notes.value;
 
   //creating delete button via dom
 
