@@ -1,8 +1,3 @@
-// 1 – wrap each text in a span
-// 2 – give these spans IDs like entry-0, entry-1, entry-2, ...
-// 3 – in the save button handler, find the closest span element
-// 4 – change the contents of this span element
-
 //save whole form as variable
 const tracker = document.getElementById("tracker");
 
