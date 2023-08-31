@@ -41,9 +41,9 @@ function displayInputContents(event) {
   //creating delete button via dom
 
   let wrapper = document.createElement("div"); // creating an empty div
-  let deleteBtn = document.createElement("button");
 
   //creating delete button
+  let deleteBtn = document.createElement("button");
   deleteBtn.textContent = "Delete";
   deleteBtn.classList.add("delete-button");
 
